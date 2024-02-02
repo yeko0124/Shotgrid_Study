@@ -1,0 +1,82 @@
+"""
+for Open EXR and ffmpeg. for open video.
+"""
+
+sudo chmod -R 777 lib64  # To paste 6 files in lib64.
+
+sudo  ln -s /lib64/libIexMath.so.6.0.0 /lib64/libIexMath.so.6
+ln -s /lib64/libHalf.so.6.0.0 /lib64/libHalf.so.6
+ln -s /lib64/libIex.so.6.0.0 /lib64/libIex.so.6
+ln -s /lib64/libIlmImf.so.7.0.0 /lib64/libIlmImf.so.7
+ln -s /lib64/libIlmThread.so.6.0.0 /lib64/libIlmThread.so.6
+ln -s /lib64/libImath.so.6.0.0 /lib64/libImath.so.6
+
+
+sudo apt-get install libopenexr-dev
+pip install OpenEXR
+sudo dnf install ilmbase
+
+sudo dnf install -y https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-8.noarch.rpm\n
+
+sudo dnf -y install ffmpeg
+sudo dnf -y install ffmpeg-devel
+
+rpm -qi ffmpeg
+ffmpeg -version
+
+# rv downloads and unzip
+# for linux
+tar -xvf rv-centos7-x86-64-2023.0.2.tar.gz
+
+vim ~/.zshrc
+alias rv='/home/rapa/Downloads/rv-centos7-x86-64-2023.0.2/bin/rv'
+export PATH=$PATH:/home/rapa/Downloads/rv-centos7-x86-64-2023.0.2/bin/
+
+
+rpm -q openssl
+rpm -q openssl-devel
+rpm -q libvirt
+
+sudo dnf install libvirt
+
+############################
+cd /lib64
+rm -f libssl.so.1.1
+ln -s /lib64/libssl.so.1.1.1k /lib64/libssl.so.1.1
+
+~/Downloads/rv-centos7-x86-64-2023.0.2/bin/rv.bin
+ldd  ~/Downloads/rv-centos7-x86-64-2023.0.2/bin/rv.bin | grep libssl
+ls ~/Downloads/rv-centos7-x86-64-2023.0.2/lib/
+cd ~/Downloads/rv-centos7-x86-64-2023.0.2/lib
+
+cd ~/Downloads/rv-centos7-x86-64-2023.0.2/bin
+
+cd lib/OpenSSL
+export LD_LIBRARY_PATH=/home/rapa/Downloads/rv-centos7-x86-64-2023.0.2/lib/OpenSSL
+
+vim rv.sh
+cd ..
+cd bin
+pwd
+sh -x ./rv.sh
+vim rv.sh
+sh -x ./rv.sh
+
+#####################################
+
+ls libk5
+ls libk5*
+sh -x ./rv.sh | grep ssl
+
+cd lib64
+
+rm -rf libk5crypto.so.3*
+rv
+cp /data/lib64/libk5crypto.so.3.1 libk5crypto.so.3
+cat /etc/redhat-release
+
+dnf install update
+sudo dnf system-upgrade
+
+
+
